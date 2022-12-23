@@ -5,6 +5,6 @@ const router = express.Router()
  
 // here it is find by local host:5000/posts due to index 
 router.get('/', getPosts);
-router.post('/', createPost)
+router.post('/create', createPost)
 
 export default router;
