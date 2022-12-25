@@ -1,16 +1,26 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 
+//create action
+import{getPosts} from './actions/posts'
+import { useDispatch } from "react-redux";
 import Hasab from './images/Yehasabekub.png'
-
+import Form from "./components/Form/Form";
+import Posts from "./components/Posts/Posts";
+import useStyles from './styles'
 const App = () => {
+    const classes = useStyles();
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getPosts);
+    },[dispatch])
     return (
         <Container maxWidth='lg'>
-            <AppBar position="static" color="inherit">
+            <AppBar className={classes.appBar} position="static" color="inherit">
                 <Typography variant="h2" align="center"  >
-                    የ ያሃብ እቁብ
+                    የ ሃሳብ እቁብ
                 </Typography>
-                <img src={ Hasab} alt='books' height={60}/>
+                <img className={classes.image} src={ Hasab} alt='books' height={60}/>
             </AppBar>
             <Grow in>
                 <Container>
@@ -20,7 +30,7 @@ const App = () => {
                         </Grid>
 
                         <Grid item xs={12} sm={4}>
-                            <Forms/>
+                            <Form/>
                         </Grid>
                     </Grid>
                 </Container>
